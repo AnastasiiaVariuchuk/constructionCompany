@@ -32,7 +32,7 @@ public class CustomerCatalog implements ICustomerCatalog{
         Customer customer = customerSet.stream().filter(customer1 -> customer1.getPhoneNumber().equals(phoneNumber)).findAny()
                 .orElse(null);
         if(customer == null) {
-            throw new NoSuchElementException("There was no such employee" + phoneNumber);
+            throw new NoSuchElementException("There was no such customer" + phoneNumber);
         }
         return customer;
     }
@@ -42,7 +42,7 @@ public class CustomerCatalog implements ICustomerCatalog{
         Customer customer = customerSet.stream().filter(customer1 -> customer1.getPassport().equals(passport)).findAny()
                 .orElse(null);
         if(customer == null) {
-            throw new NoSuchElementException("There was no such employee" + passport);
+            throw new NoSuchElementException("There was no such customer" + passport);
         }
         return customer;
     }
@@ -52,7 +52,7 @@ public class CustomerCatalog implements ICustomerCatalog{
         if (customerSet.contains(customer)) {
             customerSet.remove(customer);
         } else {
-            throw new NoSuchElementException("There was no such employee");
+            throw new NoSuchElementException("There was no such customer");
         }
         return customerSet;
     }

@@ -1,6 +1,6 @@
 package main.constructionCompany.divisions;
 
-import main.constructionCompany.reserves.Technique;
+import main.constructionCompany.reserves.technique.Technique;
 import main.constructionCompany.people.employees.Employee;
 
 import java.util.List;

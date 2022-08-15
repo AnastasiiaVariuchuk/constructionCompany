@@ -17,6 +17,11 @@ public class Department {
         this.name = name;
     }
 
+    public Department(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
     public Department(String name, String phoneNumber,
                       List<Employee> employees) {
         this.name = name;

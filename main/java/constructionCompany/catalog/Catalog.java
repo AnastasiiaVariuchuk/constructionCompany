@@ -1,4 +1,5 @@
 package main.constructionCompany.people.catalog;
 
-public interface ICatalogCreator {
+public class Catalog implements ICatalogCreator{
+
 }
