@@ -3,6 +3,7 @@ package main.constructionCompany.reserves.material.catalog;
 import main.constructionCompany.myExceptions.NoSuchElementException;
 import main.constructionCompany.reserves.material.Material;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,5 +59,13 @@ public class MaterialCatalog implements IMaterialCatalog {
             throw new NoSuchElementException("There was no such material");
         }
         return materialSet;
+    }
+
+    public List<Material> toList() {
+        List<Material> list = new ArrayList<>();
+        for (Material element : materialSet) {
+            list.add(element);
+        }
+        return list;
     }
 }

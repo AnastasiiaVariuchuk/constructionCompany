@@ -2,8 +2,9 @@ package main.constructionCompany.projects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.message.Message;
 
-public abstract class TypeProject {
+public abstract class TypeProject implements IOrder {
     private int number;
     private double square;
     private double recommendedSectionLength;
@@ -111,4 +112,6 @@ public abstract class TypeProject {
     public abstract boolean equals(Object obj);
 
     public abstract int hashCode();
+
+    public abstract Message getOrder();
 }

@@ -4,6 +4,7 @@ import main.constructionCompany.projects.IOrder;
 import main.constructionCompany.projects.TypeProject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.message.Message;
 
 import java.util.Objects;
 public class HouseProject extends TypeProject implements IOrder {
@@ -43,14 +44,14 @@ public class HouseProject extends TypeProject implements IOrder {
     }
 
     public String toString() {
-        return "House Project [\nnumber => " + super.getNumber()
-                + "\nsquare => " + super.getSquare()
-                + "\nrecommended section length => " + super.getRecommendedSectionLength()
-                + "\nrecommended section width => " + super.getRecommendedSectionWidth()
-                + "\ndescription => " + super.getDescription()
-                + "\ncost => " + super.getSquare()
-                + "\nfamily size => " + familySize
-                + "\ngarage type => " + garageType
+        return "\nHouse Project [\nnumber => " + super.getNumber()
+                + "square => " + super.getSquare()
+                + "recommended section length => " + super.getRecommendedSectionLength()
+                + "recommended section width => " + super.getRecommendedSectionWidth()
+                + "description => " + super.getDescription()
+                + "cost => " + super.getSquare()
+                + "family size => " + familySize
+                + "garage type => " + garageType
                 + " ]";
     }
 
@@ -86,8 +87,9 @@ public class HouseProject extends TypeProject implements IOrder {
     }
 
     @Override
-    public void getOrder() {
+    public Message getOrder() {
         logger.info("Congratulations, you have placed an order for the House Project!");
         System.out.println(this);
+        return null;
     }
 }

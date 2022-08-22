@@ -1,5 +1,6 @@
 package main.constructionCompany.catalog;
 
+import main.constructionCompany.divisions.ConstructionCompany;
 import main.constructionCompany.divisions.brigade.Brigade;
 import main.constructionCompany.divisions.brigade.catalog.BrigadeCatalog;
 import main.constructionCompany.divisions.department.catalog.Department;
@@ -12,12 +13,17 @@ import main.constructionCompany.estimates.materialEstimate.MaterialEstimate;
 import main.constructionCompany.estimates.materialEstimate.catalog.MaterialEstimatesCatalog;
 import main.constructionCompany.people.architect.Architect;
 import main.constructionCompany.people.architect.catalog.ArchitectCatalog;
+import main.constructionCompany.people.customer.Customer;
+import main.constructionCompany.people.customer.catalog.CustomerCatalog;
 import main.constructionCompany.people.employees.Employee;
 import main.constructionCompany.people.employees.catalog.EmployeeCatalog;
 import main.constructionCompany.projects.bathhouseProject.BathhouseProject;
 import main.constructionCompany.projects.bathhouseProject.catalog.BathhouseProjectCatalog;
 import main.constructionCompany.projects.highriseBuilding.HighriseBuilding;
 import main.constructionCompany.projects.highriseBuilding.catalog.HighriseBuildingCatalog;
+import main.constructionCompany.projects.project.Project;
+import main.constructionCompany.projects.project.catalog.ProjectCatalog;
+import main.constructionCompany.reserves.Site;
 import main.constructionCompany.reserves.material.Material;
 import main.constructionCompany.reserves.material.catalog.MaterialCatalog;
 import main.constructionCompany.reserves.technique.Technique;
@@ -45,9 +51,67 @@ public class Catalog {
         addBrigadeEstimates();
         addMaterialEstimates();
         addEstimates();
+        addProject();
     }
 
-    private static void addMaterialEstimates() {
+    public static void addCustomer() {
+        CustomerCatalog customerCatalog = CustomerCatalog.getCustomerCatalog();
+
+        Customer customer1 = new Customer("Anastasiia", "Variuchuk", "+380995674356", 19, "12345678");
+        Customer customer2 = new Customer("Ivanna", "Phenichna", "+380995674365", 39, "12345342121");
+        Customer customer3 = new Customer("Valeria", "Grizchenko", "+380503458962", 43, "1234567890");
+
+        customerCatalog.addCustomer(customer1);customerCatalog.addCustomer(customer2);
+        customerCatalog.addCustomer(customer3);
+    }
+
+    public static void addProject() {
+        ProjectCatalog projectCatalog = ProjectCatalog.getProjectCatalog();
+
+        //1
+        Site site1 = new Site("Kyiv", 1, 1, 1, 1, "1");
+        List<Estimate> estimateList1 = new ArrayList<>();
+        Estimate estimate1 =  EstimatesCatalog.getEstimatesCatalog().findEstimateByCode(1);
+        Estimate estimate2 =  EstimatesCatalog.getEstimatesCatalog().findEstimateByCode(2);
+        estimateList1.add(estimate1); estimateList1.add(estimate2);
+        Project project1 = new Project(1, CustomerCatalog.getCustomerCatalog().findCustomerByPhoneNumber("+380995674365"),
+               estimateList1,site1, HighriseBuildingCatalog.getHighriseBuildingCatalog().findHighriseBuildingByNumber(1));
+
+        //2
+        Site site2 = new Site("Kyiv", 2, 2, 2, 2, "2");
+        List<Estimate> estimateList2 = new ArrayList<>();
+        Estimate estimate3 =  EstimatesCatalog.getEstimatesCatalog().findEstimateByCode(3);
+        Estimate estimate4 =  EstimatesCatalog.getEstimatesCatalog().findEstimateByCode(4);
+        estimateList2.add(estimate3); estimateList2.add(estimate4);
+        Project project2 = new Project(2, CustomerCatalog.getCustomerCatalog().findCustomerByPhoneNumber("+380995674356"),
+                estimateList2, site2, BathhouseProjectCatalog.getBathhouseProjectCatalog().findBathhouseProjectByNumber(2));
+
+        //3
+        Site site3 = new Site("Kyiv", 3, 3, 3, 3, "3");
+        List<Estimate> estimateList3 = new ArrayList<>();
+        estimateList2.add(estimate3); estimateList2.add(estimate1);
+        Project project3 = new Project(3, CustomerCatalog.getCustomerCatalog().findCustomerByPhoneNumber("+380503458962"),
+                estimateList3, site3, BathhouseProjectCatalog.getBathhouseProjectCatalog().findBathhouseProjectByNumber(4));
+
+        projectCatalog.addProject(project1);projectCatalog.addProject(project2);
+        projectCatalog.addProject(project3);
+    }
+
+    public static ConstructionCompany createTheCompany() {
+        ConstructionCompany constructionCompany = new ConstructionCompany(
+                "Main Company", "Kyiv, Ukraine", "maincompany@gmail.com", "+280501112233",
+                Creator.getDepartments(),
+                Creator.getTechnique(),
+                Creator.getMaterials(),
+                Creator.getHouseProjects(),
+                Creator.getHighriseBuildings(),
+                Creator.getBathhouseProjects(),
+                Creator.getProjects(),
+                Creator.getCustomers());
+        return constructionCompany;
+    }
+
+    public static void addMaterialEstimates() {
         MaterialEstimatesCatalog materialEstimatesCatalog = MaterialEstimatesCatalog.getMaterialEstimatesCatalog();
 
         MaterialEstimate materialEstimate1 = new MaterialEstimate
@@ -80,8 +144,8 @@ public class Catalog {
         materialEstimatesCatalog.addMaterialEstimate(materialEstimate9);
     }
 
-    private static void addEstimates() {
-        EstimatesCatalog estimatesCatalog = EstimatesCatalog.getHouseProjectCatalog();
+    public static void addEstimates() {
+        EstimatesCatalog estimatesCatalog = EstimatesCatalog.getEstimatesCatalog();
 
         List<BrigadeEstimate> brigadeEstimates1= new ArrayList<>();
         brigadeEstimates1.add(BrigadeEstimatesCatalog.getMaterialEstimatesCatalog().findBrigadeEstimateByCode(1));
@@ -109,7 +173,7 @@ public class Catalog {
         Estimate estimate1 = new Estimate(1, brigadeEstimates1, materialEstimates1);
         Estimate estimate2 = new Estimate(2, brigadeEstimates2, materialEstimates2);
         Estimate estimate3 = new Estimate(3, brigadeEstimates1, materialEstimates2);
-        Estimate estimate4 = new Estimate(2, brigadeEstimates2, materialEstimates1);
+        Estimate estimate4 = new Estimate(4, brigadeEstimates2, materialEstimates1);
 
         estimatesCatalog.addEstimate(estimate1);
         estimatesCatalog.addEstimate(estimate2);
@@ -117,7 +181,7 @@ public class Catalog {
         estimatesCatalog.addEstimate(estimate4);
     }
 
-    private static void addBrigadeEstimates() {
+    public static void addBrigadeEstimates() {
         BrigadeEstimatesCatalog brigadeEstimatesCatalog = BrigadeEstimatesCatalog.getMaterialEstimatesCatalog();
 
         BrigadeEstimate brigadeEstimate1 = new BrigadeEstimate
@@ -138,7 +202,7 @@ public class Catalog {
         brigadeEstimatesCatalog.addBrigadeEstimate(brigadeEstimate5);
     }
 
-    private static void addDepartment() {
+    public static void addDepartment() {
         DepartmentCatalog departmentCatalog = DepartmentCatalog.getDepartmentCatalog();
 
         List<Employee> employeeList1 = EmployeeCatalog.getEmployeeCatalog().findEmployeeByPosition("Designer");
@@ -155,7 +219,7 @@ public class Catalog {
         departmentCatalog.addDepartment(department3);departmentCatalog.addDepartment(department4);
     }
 
-    private static void addArchitect() {
+    public static void addArchitect() {
         ArchitectCatalog architectCatalog = ArchitectCatalog.getArchitectCatalog();
 
         Department department1 = DepartmentCatalog.getDepartmentCatalog().findDepartmentByName("Architect");
@@ -168,7 +232,8 @@ public class Catalog {
         architectCatalog.addArchitect(architect1);
         architectCatalog.addArchitect(architect2);
     }
-    private static void addEmployee() {
+
+    public static void addEmployee() {
         EmployeeCatalog employeeCatalog = EmployeeCatalog.getEmployeeCatalog();
 
         Department department1 = DepartmentCatalog.getDepartmentCatalog().findDepartmentByName("Architect");
@@ -207,10 +272,7 @@ public class Catalog {
         employeeCatalog.addEmployee(employee9);
     }
 
-    private static void addCustomer() {
-    }
-
-    private static void addHighriseBuildingProject() {
+    public static void addHighriseBuildingProject() {
         HighriseBuildingCatalog highriseBuildingCatalog = HighriseBuildingCatalog.getHighriseBuildingCatalog();
 
         HighriseBuilding highriseBuilding1 = new HighriseBuilding(1, 1000.0, 20.0,
@@ -222,7 +284,7 @@ public class Catalog {
         highriseBuildingCatalog.addHighriseBuilding(highriseBuilding2);
     }
 
-    private static void addBathhouseProject() {
+    public static void addBathhouseProject() {
         BathhouseProjectCatalog bathhouseProjectCatalog = BathhouseProjectCatalog.getBathhouseProjectCatalog();
 
         BathhouseProject bathhouseProject1 = new BathhouseProject(1, 40.0, 5.0,
@@ -240,10 +302,10 @@ public class Catalog {
         bathhouseProjectCatalog.addBathhouseProject(bathhouseProject4);
     }
 
-    private static void addHouseProject() {
+    public static void addHouseProject() {
     }
 
-    private static void addBrigade() {
+    public static void addBrigade() {
         BrigadeCatalog brigadeCatalog = BrigadeCatalog.getDepartmentCatalog();
 
         TechniqueCatalog techniqueCatalog = TechniqueCatalog.getTechniqueCatalog();
@@ -268,8 +330,7 @@ public class Catalog {
         brigadeCatalog.addBrigade(brigade2);
     }
 
-
-    private static void addMaterial() {
+    public static void addMaterial() {
         MaterialCatalog materialCatalog = MaterialCatalog.getMaterialCatalog();
 
         Material material1 = new Material("Brick", "001", 2000);
@@ -289,7 +350,7 @@ public class Catalog {
         materialCatalog.addMaterial(material9);
     }
 
-    private static void addTechnique() {
+    public static void addTechnique() {
         TechniqueCatalog techniqueCatalog = TechniqueCatalog.getTechniqueCatalog();
 
         Technique technique1 = new Technique("Sennebogen S 613R", "Telekran", 4000.0);

@@ -1,25 +1,31 @@
 package main.constructionCompany;
 
-import main.constructionCompany.actions.Registration;
-import main.constructionCompany.taskUtils.Task;
+import main.constructionCompany.actions.Order;
+import main.constructionCompany.catalog.Catalog;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
-
-import static main.constructionCompany.actions.Order.ordering;
 
 public class Main
 {
     private static final Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args){
-        Task.task();
-        ordering();
-        try {
-            Registration.registration();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Catalog.filling();
+        Order.ordering();
+        //For Task2
+
+        //Task2Main.getDeclaredFields();
+        //Task2Main.getDeclaredField();
+        //Task2Main.getFields();
+        //Task2Main.getField();
+
+        //Task2Main.getDeclaredMethods();
+        //Task2Main.getDeclaredMethod();
+        //Task2Main.getEnclosingMethod();
+        //Task2Main.setAccessible1();
+        //Task2Main.setAccessible2();
+
+        //Task2Main.interfaceCheck();
+
         /**
         Department department1 = new Department("Architectural");
         Architect a;
@@ -48,30 +54,5 @@ public class Main
         logger.info("llllll");
          */
 
-
-        ///////////////////////////////////////////////////////////////////////////////////////////
-
-        //1 - create collection of department
-
-
-        //2 - create collection of employee
-
-
-        //3 - create collection of techniques
-
-
-        //4 - create collection of Brigade
-
-        //5 - create collection of Brigade Estimates
-
-        //6 - create collection of Material
-
-        //7 - create collection of Material Estimate
-
-        //8 - create collection of Estimate
-
-        //9 - create collection of Bathhouse Projects
-
-        //10 - create collection of Highrise Projects
     }
 }

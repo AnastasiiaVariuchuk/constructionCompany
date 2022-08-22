@@ -1,5 +1,5 @@
-Name: Valentin
-Surname: Ivanov
-Password: twgxsg7w7
-Phone number: +370997654523
-Age: 45
+Name: Valeria
+Surname: Grizchenko
+Password: 1234567890
+Phone number: +380503458962
+Age: 43

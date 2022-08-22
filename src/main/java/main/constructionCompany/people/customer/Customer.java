@@ -12,9 +12,9 @@ public class Customer extends Person {
     }
 
     public Customer(String name, String surname, String phoneNumber, int age,
-                    String passport) {
+                    String password) {
         super(name,surname,phoneNumber, age);
-        this.passport = passport;
+        this.password = password;
     }
 
     public Customer(String name, String surname, String phoneNumber, int age,

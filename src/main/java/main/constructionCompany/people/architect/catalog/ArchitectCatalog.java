@@ -42,7 +42,7 @@ public class ArchitectCatalog implements IArchitectCatalog {
     @Override
     public Architect findArchitectByFullName(String name, String surname) {
         Architect employee = architectSet.stream()
-                .filter(employee1 -> employee1.getName().equals(name) && employee1.getSurname().equals(employee1))
+                .filter(employee1 -> employee1.getName().equals(name) && employee1.getSurname().equals(surname))
                 .findAny().orElse(null);;
         if(employee == null) {
             throw new NoSuchElementException("There was no such  architect" + name + surname);

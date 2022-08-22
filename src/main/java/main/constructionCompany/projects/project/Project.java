@@ -1,7 +1,9 @@
-package main.constructionCompany.projects;
+package main.constructionCompany.projects.project;
 
 import main.constructionCompany.estimates.estimate.Estimate;
 import main.constructionCompany.people.customer.Customer;
+import main.constructionCompany.projects.BuildingPlan;
+import main.constructionCompany.projects.TypeProject;
 import main.constructionCompany.reserves.Site;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +26,7 @@ public class Project {
     public Project() {
     }
 
-    public Project(int number, double totalCost, Customer customer,
+    public Project(int number, Customer customer,
                    List<Estimate> estimates, List<BuildingPlan> buildingPlans,
                    Site site, TypeProject typeProject, Date date) {
         if (number < 0) {
@@ -32,7 +34,6 @@ public class Project {
         } else {
             this.number = number;
         }
-        this.totalCost = totalCost;
         this.customer = customer;
         this.estimates = estimates;
         this.buildingPlans = buildingPlans;
@@ -44,6 +45,20 @@ public class Project {
         } else {
             this.date = date;
         }
+    }
+
+    public Project(int number, Customer customer,
+                   List<Estimate> estimates,
+                   Site site, TypeProject typeProject) {
+        if (number < 0) {
+            logger.error("Unique number exception: it less then 0");
+        } else {
+            this.number = number;
+        }
+        this.customer = customer;
+        this.estimates = estimates;
+        this.site = site;
+        this.typeProject = typeProject;
     }
 
     public void setNumber(int number) {
@@ -153,7 +168,7 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return Objects.hash(number, totalCost,customer.hashCode(), estimates.hashCode(), buildingPlans.hashCode(),
-                site.hashCode(), typeProject.hashCode(), date.hashCode());
+        return Objects.hash(number, customer.hashCode(), estimates.hashCode(),
+                site.hashCode(), typeProject.hashCode());
     }
 }

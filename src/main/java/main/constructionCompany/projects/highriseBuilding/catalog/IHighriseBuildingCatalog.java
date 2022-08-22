@@ -13,4 +13,6 @@ public interface IHighriseBuildingCatalog {
     List<HighriseBuilding> findHighriseBuildingByUsageType(String usageType);
 
     Set<HighriseBuilding> deleteHighriseBuildingCatalog(HighriseBuilding highriseBuilding);
+
+    public List<HighriseBuilding> toList();
 }

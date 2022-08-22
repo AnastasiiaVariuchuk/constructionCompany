@@ -4,6 +4,7 @@ import main.constructionCompany.projects.IOrder;
 import main.constructionCompany.projects.TypeProject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.message.Message;
 
 import java.util.Objects;
 
@@ -27,13 +28,13 @@ public class BathhouseProject extends TypeProject implements IOrder {
 
     @Override
     public String toString() {
-        return "Bathhouse Project [\nnumber => " + super.getNumber()
-                + "\nsquare => " + super.getSquare()
-                + "\nrecommended section length => " + super.getRecommendedSectionLength()
-                + "\nrecommended section width => " + super.getRecommendedSectionWidth()
-                + "\ndescription => " + super.getDescription()
-                + "\ncost => " + super.getSquare()
-                + "\nbathhouseType => " + getBathhouseType()
+        return "\nBathhouse Project [\nnumber => " + super.getNumber()
+                + " square => " + super.getSquare()
+                + " recommended section length => " + super.getRecommendedSectionLength()
+                + " recommended section width => " + super.getRecommendedSectionWidth()
+                + " description => " + super.getDescription()
+                + " cost => " + super.getSquare()
+                + " bathhouseType => " + getBathhouseType()
                 + " ]";
     }
 
@@ -69,8 +70,9 @@ public class BathhouseProject extends TypeProject implements IOrder {
     }
 
     @Override
-    public void getOrder() {
+    public Message getOrder() {
         logger.info("Congratulations, you have placed an order for the Bathhouse!");
         System.out.println(this);
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package main.constructionCompany.projects.highriseBuilding.catalog;
 import main.constructionCompany.myExceptions.NoSuchElementException;
 import main.constructionCompany.projects.highriseBuilding.HighriseBuilding;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -59,5 +60,13 @@ public class HighriseBuildingCatalog implements IHighriseBuildingCatalog{
             throw new NoSuchElementException("There was no such type");
         }
         return highriseBuildings;
+    }
+
+    public List<HighriseBuilding> toList() {
+        List<HighriseBuilding> list = new ArrayList<>();
+        for (HighriseBuilding element : highriseBuildings) {
+            list.add(element);
+        }
+        return list;
     }
 }

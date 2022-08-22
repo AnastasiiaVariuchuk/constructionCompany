@@ -1,6 +1,7 @@
 package main.constructionCompany.projects;
 
 import main.constructionCompany.myExceptions.ProjectNotFoundedException;
+import main.constructionCompany.projects.project.Project;
 
 import java.util.ArrayList;
 import java.util.List;

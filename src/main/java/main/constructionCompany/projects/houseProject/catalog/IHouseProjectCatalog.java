@@ -13,4 +13,6 @@ public interface IHouseProjectCatalog {
     List<HouseProject> findHouseProjectByFamilySize(String familyType);
 
     Set<HouseProject> deleteHouseProjectCatalog(HouseProject houseProject);
+
+    public List<HouseProject> toList();
 }

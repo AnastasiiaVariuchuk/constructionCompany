@@ -13,4 +13,6 @@ public interface IBathhouseProjectCatalog {
     List<BathhouseProject> findBathhouseProjectByBathhouseType(String bathhouseType);
 
     Set<BathhouseProject> deleteBathhouseProjectCatalog(BathhouseProject bathhouseProject);
+
+    public List<BathhouseProject> toList();
 }

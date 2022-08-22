@@ -68,5 +68,4 @@ public class TechniqueCatalog implements ITechniqueCatalog {
         }
         return techniques;
     }
-
 }

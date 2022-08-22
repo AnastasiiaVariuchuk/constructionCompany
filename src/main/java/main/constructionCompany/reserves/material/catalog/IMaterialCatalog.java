@@ -13,5 +13,7 @@ public interface IMaterialCatalog {
     List<Material> findMaterialByType(String type);
 
     Set<Material> deleteMaterial(Material material);
+
+    public List<Material> toList();
 }
 

@@ -3,6 +3,7 @@ package main.constructionCompany.projects.houseProject.catalog;
 import main.constructionCompany.myExceptions.NoSuchElementException;
 import main.constructionCompany.projects.houseProject.HouseProject;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,8 +57,16 @@ public class HouseProjectCatalog implements IHouseProjectCatalog{
         if (houseProjectSet.contains(houseProject)) {
             houseProjectSet.remove(houseProject);
         } else {
-            throw new NoSuchElementException("There was no house type");
+            throw new NoSuchElementException("There was no house");
         }
         return houseProjectSet;
+    }
+
+    public List<HouseProject> toList() {
+        List<HouseProject> list = new ArrayList<>();
+        for (HouseProject element : houseProjectSet) {
+            list.add(element);
+        }
+        return list;
     }
 }

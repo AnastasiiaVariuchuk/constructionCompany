@@ -1,23 +1,22 @@
 package main.constructionCompany.divisions;
 
 import main.constructionCompany.divisions.department.catalog.Department;
-import main.constructionCompany.estimates.estimate.Estimate;
 import main.constructionCompany.estimates.IDiscountCustomerFinder;
-import main.constructionCompany.estimates.IDiscountEmployeeFinder;
+import main.constructionCompany.people.architect.catalog.ArchitectCatalog;
 import main.constructionCompany.people.customer.Customer;
 import main.constructionCompany.people.employees.Employee;
-import main.constructionCompany.projects.Project;
+import main.constructionCompany.people.employees.catalog.EmployeeCatalog;
 import main.constructionCompany.projects.bathhouseProject.BathhouseProject;
 import main.constructionCompany.projects.highriseBuilding.HighriseBuilding;
 import main.constructionCompany.projects.houseProject.HouseProject;
+import main.constructionCompany.projects.project.Project;
 import main.constructionCompany.reserves.material.Material;
 import main.constructionCompany.reserves.technique.Technique;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEmployeeFinder {
+public class ConstructionCompany implements IDiscountCustomerFinder {
     private String name;
     private String address;
     private String email;
@@ -28,6 +27,7 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
     private List<HouseProject> houseProjects;
     private List<HighriseBuilding> highriseBuildings;
     private List<BathhouseProject> bathhouseProjects;
+    private List<Customer> customers;
     private List<Schedule> schedules;
     private List<Project> projects;
 
@@ -38,8 +38,8 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
                                String phoneNumber, List<Department> departments,
                                List<Technique> techniques, List<Material> materials,
                                List<HouseProject> houseProjects, List<HighriseBuilding> highriseBuildings,
-                               List<BathhouseProject> bathhouseProjects, List<Schedule> schedules,
-                               List<Project> projects) {
+                               List<BathhouseProject> bathhouseProjects, List<Project> projects,
+                               List<Customer> customers) {
         this.name = name;
         this.address = address;
         this.email = email;
@@ -50,8 +50,8 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
         this.houseProjects = houseProjects;
         this.highriseBuildings = highriseBuildings;
         this.bathhouseProjects = bathhouseProjects;
-        this.schedules = schedules;
         this.projects = projects;
+        this.customers = customers;
     }
 
     public void setName(String name) {
@@ -150,6 +150,14 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
         return projects;
     }
 
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
     @Override
     public String toString() {
         return "Construction Company [\nname => " + name
@@ -163,7 +171,8 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
                 + "\nlist of highrise buildings => " + highriseBuildings.toString()
                 + "\nlist of bathhouse projects => " + bathhouseProjects.toString()
                 + "\nschedules => " + schedules.toString()
-                + "\nlist of projects => " + projects.toString() + " ]";
+                + "\nlist of projects => " + projects.toString()
+                + "\nlist of customers => " + customers.toString() + "]";
     }
 
     @Override
@@ -187,7 +196,8 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
                 && Objects.equals(highriseBuildings, c.highriseBuildings)
                 && Objects.equals(houseProjects, c.houseProjects)
                 && Objects.equals(schedules, c.schedules)
-                && Objects.equals(projects, c.projects);
+                && Objects.equals(projects, c.projects)
+                && Objects.equals(customers, c.customers);
     }
 
     @Override
@@ -195,23 +205,52 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
         return Objects.hash(name.hashCode(), address.hashCode(), phoneNumber.hashCode(), email.hashCode(),
                 materials.hashCode(), departments.hashCode(), techniques.hashCode(),
                 schedules.hashCode(), bathhouseProjects.hashCode(), highriseBuildings.hashCode(),
-                houseProjects.hashCode(), projects.hashCode());
+                houseProjects.hashCode(), projects.hashCode(), customers.hashCode());
     }
 
 
     @Override
-    public boolean isRegularCustomer(Customer customer) {
+    public boolean isRegularCustomer(Customer customer) {  //left
         int i = 0;
         for (Project project : projects) {
             if (project.getCustomer().equals(customer)) {
                 i += 1;
             }
         }
-        if (i < 2) {
+        if (i < 1) {
             return false;
         } else {
             return true; }
     }
+
+    @Override
+    public boolean isEmployee(Customer customer) {
+        if (EmployeeCatalog.getEmployeeCatalog().findEmployeeByFullName(customer.getName(),customer.getSurname()) != null) {
+            return true;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean isArchitect(Customer customer) {
+        if (ArchitectCatalog.getArchitectCatalog().findArchitectByFullName(customer.getName(), customer.getSurname()) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean idArchitect(Employee employee) {
+        if (ArchitectCatalog.getArchitectCatalog().findArchitectByFullName(employee.getName(), employee.getSurname()) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
 
     @Override
     public List<Project> getProjectsForDiscount(Customer customer) {
@@ -239,19 +278,6 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
         return(p);
     }
 
-    @Override
-    public Customer isCustomer(Employee employee) {
-        List<Customer> c = new ArrayList<>();
-        for (Project project : projects) {
-            c.add(project.getCustomer());
-        }
-        for (Customer customer : c) {
-            if (employee.getSurname() == customer.getSurname() && employee.getName() == customer.getName()){
-                return customer;
-            }
-        }
-        return null;
-    }
 
     @Override
     public List<Double> getPriceWithDiscountForEmployee(Employee employee) {
@@ -266,4 +292,5 @@ public class ConstructionCompany implements IDiscountCustomerFinder, IDiscountEm
         }
         return(p);
     }
+    **/
 }

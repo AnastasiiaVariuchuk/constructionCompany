@@ -3,6 +3,7 @@ package main.constructionCompany.projects.bathhouseProject.catalog;
 import main.constructionCompany.myExceptions.NoSuchElementException;
 import main.constructionCompany.projects.bathhouseProject.BathhouseProject;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -59,5 +60,13 @@ public class BathhouseProjectCatalog implements IBathhouseProjectCatalog{
             throw new NoSuchElementException("There was no bathhouse type");
         }
         return bathhouseProjectSet;
+    }
+
+    public List<BathhouseProject> toList() {
+        List<BathhouseProject> list = new ArrayList<>();
+        for (BathhouseProject element : bathhouseProjectSet) {
+            list.add(element);
+        }
+        return list;
     }
 }

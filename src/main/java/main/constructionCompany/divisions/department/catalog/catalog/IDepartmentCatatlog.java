@@ -2,6 +2,7 @@ package main.constructionCompany.divisions.department.catalog.catalog;
 
 import main.constructionCompany.divisions.department.catalog.Department;
 
+import java.util.List;
 import java.util.Set;
 
 public interface IDepartmentCatatlog {
@@ -12,4 +13,6 @@ public interface IDepartmentCatatlog {
     Department findDepartmentByName(String name);
 
     Set<Department> deleteDepartment(Department department);
+
+    List<Department> toList();
 }

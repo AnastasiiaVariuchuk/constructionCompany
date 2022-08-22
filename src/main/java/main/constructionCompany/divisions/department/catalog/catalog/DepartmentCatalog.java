@@ -3,10 +3,12 @@ package main.constructionCompany.divisions.department.catalog.catalog;
 import main.constructionCompany.divisions.department.catalog.Department;
 import main.constructionCompany.myExceptions.NoSuchElementException;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class DepartmentCatalog implements IDepartmentCatatlog {
+public class DepartmentCatalog implements IDepartmentCatatlog{
     private Set<Department> departmentSet = new HashSet<>();
     private static final DepartmentCatalog DEPARTMENT_CATALOG = new DepartmentCatalog();
 
@@ -55,5 +57,14 @@ public class DepartmentCatalog implements IDepartmentCatatlog {
             throw new NoSuchElementException("There was no such department");
         }
         return departmentSet;
+    }
+
+    @Override
+    public List<Department> toList() {
+        List<Department> departmentList = new ArrayList<>();
+        for (Department element : departmentSet) {
+            departmentList.add(element);
+        }
+        return departmentList;
     }
 }

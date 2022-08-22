@@ -14,7 +14,7 @@ public class EstimatesCatalog implements IEstimatesCatalog {
     private EstimatesCatalog() {
     }
 
-    public static EstimatesCatalog getHouseProjectCatalog() {
+    public static EstimatesCatalog getEstimatesCatalog() {
         return ESTIMATES_CATALOG;
     }
 

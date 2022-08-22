@@ -1,6 +1,5 @@
 package main.constructionCompany.actions;
 
-import main.constructionCompany.catalog.Catalog;
 import main.constructionCompany.people.customer.Customer;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -74,6 +73,17 @@ public class Registration {
             String phoneNumberCode = countryChoice();
             logger.info(phoneNumberCode);
             String phoneNumber = scanner.nextLine();
+            boolean phoneNumberInt = false;
+            while(!phoneNumberInt) {
+                try {
+                    Integer.parseInt(phoneNumber);
+                    phoneNumberInt = true;
+                } catch (NumberFormatException e) {
+                    logger.info("Try again!");
+                    phoneNumberInt = false;
+                    phoneNumber = scanner.nextLine();
+                }
+            }
             String ph = phoneNumberCode + phoneNumber;
             if (phoneNumber.length() == 9) {
                 customer.setPhoneNumber(ph);
@@ -96,10 +106,9 @@ public class Registration {
             }
         } while (ageStatus != true);
 
+        logger.info("Thank you for the registration!!");
+
         FileUtils.writeLines(customerFile, customerData);
-
-        Catalog.filling();
-
         return customer;
     }
 }
