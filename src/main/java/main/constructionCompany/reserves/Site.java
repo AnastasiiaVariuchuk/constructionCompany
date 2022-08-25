@@ -111,12 +111,12 @@ public class Site {
 
     @Override
     public String toString() {
-        return "Site [\naddress => " + address
-                + "\ncode of cite => " + codeSite
-                + "\nsquare => " + square
-                + "\nlength => " + length
-                + "\nwidth => " + width
-                + "\ndescription => " + description + " ]";
+        return "\nSite [ address => " + address
+                + " code of cite => " + codeSite
+                + " square => " + square
+                + " length => " + length
+                + " width => " + width
+                + " description => " + description + " ]";
     }
 
     @Override

@@ -21,6 +21,8 @@ import main.constructionCompany.projects.bathhouseProject.BathhouseProject;
 import main.constructionCompany.projects.bathhouseProject.catalog.BathhouseProjectCatalog;
 import main.constructionCompany.projects.highriseBuilding.HighriseBuilding;
 import main.constructionCompany.projects.highriseBuilding.catalog.HighriseBuildingCatalog;
+import main.constructionCompany.projects.houseProject.HouseProject;
+import main.constructionCompany.projects.houseProject.catalog.HouseProjectCatalog;
 import main.constructionCompany.projects.project.Project;
 import main.constructionCompany.projects.project.catalog.ProjectCatalog;
 import main.constructionCompany.reserves.Site;
@@ -303,6 +305,28 @@ public class Catalog {
     }
 
     public static void addHouseProject() {
+        HouseProjectCatalog houseProjectCatalog = HouseProjectCatalog.getHouseProjectCatalog();
+
+        HouseProject houseProject1 = new HouseProject(1, 250, 30,
+                28, "2 floors", 25000, "2 families", "for 1 car" );
+        HouseProject houseProject2 = new HouseProject(2, 350, 32,
+                38, "2 floors and attic", 29000, "2 families", "for 1 car" );
+        HouseProject houseProject3 = new HouseProject(3, 150, 31,
+                18, "1 floors and attic", 23000, "1 family", "for 1 car" );
+        HouseProject houseProject4 = new HouseProject(4, 230, 29,
+                23, "2 floors", 19000, "2 families", "for 1 car" );
+        HouseProject houseProject5 = new HouseProject(5, 120, 20,
+                24, "1 floor", 25000, "q family", "for 2 cars" );
+        HouseProject houseProject6 = new HouseProject(6, 450, 40,
+                30, "3 floors and attic", 31000, "2 families", "for 2 cars" );
+
+        houseProjectCatalog.addHouseProjectCatalog(houseProject1);
+        houseProjectCatalog.addHouseProjectCatalog(houseProject2);
+        houseProjectCatalog.addHouseProjectCatalog(houseProject3);
+        houseProjectCatalog.addHouseProjectCatalog(houseProject4);
+        houseProjectCatalog.addHouseProjectCatalog(houseProject5);
+        houseProjectCatalog.addHouseProjectCatalog(houseProject6);
+
     }
 
     public static void addBrigade() {

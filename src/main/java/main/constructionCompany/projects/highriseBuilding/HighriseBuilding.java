@@ -49,7 +49,7 @@ public class HighriseBuilding extends TypeProject implements IOrder {
 
     @Override
     public String toString() {
-        return "\nHighrise Building [\nnumber => " + super.getNumber()
+        return "\nHighrise Building [number => " + super.getNumber()
                 + " square => " + super.getSquare()
                 + " recommended section length => " + super.getRecommendedSectionLength()
                 + " recommended section width => " + super.getRecommendedSectionWidth()

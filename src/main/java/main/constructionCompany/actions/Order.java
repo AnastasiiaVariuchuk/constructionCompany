@@ -1,8 +1,10 @@
 package main.constructionCompany.actions;
 
 import main.constructionCompany.catalog.Creator;
+import main.constructionCompany.enums.Discount;
 import main.constructionCompany.people.customer.Customer;
 import main.constructionCompany.people.customer.catalog.CustomerCatalog;
+import main.constructionCompany.projects.TypeProject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,22 +23,37 @@ public class Order {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            Choice.projectChoice().getOrder();
+            TypeProject typeProject = Choice.projectChoice();
+            typeProject.getOrder();
+            double price = Calculate.getPrice(Creator.createNewProject(customer, typeProject));
+            double price1 = 0;
             if (CustomerCatalog.getCustomerCatalog().findCustomerByPhoneNumber(customer.getPhoneNumber()) != null) {
+                price1 = price - price * Discount.CUSTOMER.getDiscount()/100;
                 if (Creator.getConstructionCompany().isRegularCustomer(customer)) {
-                    logger.info("RegularCustomer");
+                    logger.info("Status => RegularCustomer: -10%");
+                    price1 = price - price * Discount.REGULAR_CUSTOMER.getDiscount()/100;
                     if (Creator.getConstructionCompany().isEmployee(customer)) {
-                        logger.info("RegularCustomer and Employee");
+                        logger.info("Status => RegularCustomer and Employee: -30%");
+                        price1 = price - price * (Discount.REGULAR_CUSTOMER.getDiscount()
+                                + Discount.EMPLOYEE.getDiscount())/100;
                         if (Creator.getConstructionCompany().isArchitect(customer)) {
-                            logger.info("RegularCustomer and Employee and Architect");
+                            logger.info("Status => RegularCustomer and Architect: -35%");
+                            price1 = price - price * (Discount.REGULAR_CUSTOMER.getDiscount()
+                                    + Discount.ARCHITECT.getDiscount())/100;
                         }
                     }
-                } else if (Creator.getConstructionCompany().isEmployee(customer)) {
-                    logger.info("Employee");
+                } else if (Creator.getConstructionCompany().isEmployee(customer)
+                        && Creator.getConstructionCompany().isRegularCustomer(customer) == false) {
+                    logger.info("Status => Employee: -20%");
+                    price1 = price - price * Discount.EMPLOYEE.getDiscount()/100;
                     if (Creator.getConstructionCompany().isArchitect(customer)) {
-                        logger.info("Employee and Architect");
+                        logger.info("Status => Architect: -35%");
+                        price1 = price - price * Discount.ARCHITECT.getDiscount()/100;
                     }
+                } else {
+                    logger.info("Status => Customer!!!");
                 }
+                logger.info("Total price => " + price1);
             }
         }
     }

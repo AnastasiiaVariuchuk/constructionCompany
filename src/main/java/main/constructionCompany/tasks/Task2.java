@@ -24,4 +24,19 @@ public class Task2 {
     protected void printWord() {
         System.out.println(word);
     }
+
+    //For Task2
+
+    //Task2Main.getDeclaredFields();
+    //Task2Main.getDeclaredField();
+    //Task2Main.getFields();
+    //Task2Main.getField();
+
+    //Task2Main.getDeclaredMethods();
+    //Task2Main.getDeclaredMethod();
+    //Task2Main.getEnclosingMethod();
+    //Task2Main.setAccessible1();
+    //Task2Main.setAccessible2();
+
+    //Task2Main.interfaceCheck();
 }

@@ -119,7 +119,7 @@ public class Choice {
                         logger.info("Incorrect value, please try again! ");
                         j = scanner.nextInt();
                     } if (j == 1) {
-                        projectChoice();
+                        typeProject = projectChoice();
                     }
                     correct = true;
                 } while (correct != true);
@@ -166,7 +166,7 @@ public class Choice {
                         logger.info("Incorrect value, please try again! ");
                         j = scanner.nextInt();
                     } if (j == 1) {
-                        projectChoice();
+                        typeProject = projectChoice();
                     }
                     correct = true;
                 } while (correct != true);
@@ -212,7 +212,7 @@ public class Choice {
                         logger.info("Incorrect value, please try again! ");
                         j = scanner.nextInt();
                     } if (j == 1) {
-                        projectChoice();
+                        typeProject = projectChoice();
                     }
                     correct = true;
                 } while (correct != true);
@@ -273,8 +273,7 @@ public class Choice {
                 do {
                     logger.info("Do you want to create an order?\n1 => YES\n2 => NO\n3 => I WANT TO REVIEW SERVICES");
                     j = scanner.nextInt();
-                    if (j < 1 || j > 3) {
-                        logger.info("Incorrect value, please try again! ");
+                    if (j < 1 || j > 3) {logger.info("Incorrect value, please try again! ");
                         j = scanner.nextInt();
                     } if (j == 3) {
                         isMakeOrder = serviceChoice();

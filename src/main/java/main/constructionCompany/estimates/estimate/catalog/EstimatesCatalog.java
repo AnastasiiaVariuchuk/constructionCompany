@@ -3,7 +3,9 @@ package main.constructionCompany.estimates.estimate.catalog;
 import main.constructionCompany.estimates.estimate.Estimate;
 import main.constructionCompany.myExceptions.NoSuchElementException;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class EstimatesCatalog implements IEstimatesCatalog {
@@ -47,5 +49,14 @@ public class EstimatesCatalog implements IEstimatesCatalog {
             throw new NoSuchElementException("There was no such estimate");
         }
         return estimateSet;
+    }
+
+    @Override
+    public List<Estimate> toList() {
+        List<Estimate> list = new ArrayList<>();
+        for (Estimate element : estimateSet) {
+            list.add(element);
+        }
+        return list;
     }
 }

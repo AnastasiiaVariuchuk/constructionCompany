@@ -225,16 +225,16 @@ public class ConstructionCompany implements IDiscountCustomerFinder {
 
     @Override
     public boolean isEmployee(Customer customer) {
-        if (EmployeeCatalog.getEmployeeCatalog().findEmployeeByFullName(customer.getName(),customer.getSurname()) != null) {
+        if (EmployeeCatalog.getEmployeeCatalog().findEmployeeByNameSurname(customer.getName(),customer.getSurname()) != null) {
             return true;
         } else {
-            return true;
+            return false;
         }
     }
 
     @Override
     public boolean isArchitect(Customer customer) {
-        if (ArchitectCatalog.getArchitectCatalog().findArchitectByFullName(customer.getName(), customer.getSurname()) != null) {
+        if (ArchitectCatalog.getArchitectCatalog().findArchitectByNameSurname(customer.getName(), customer.getSurname()) != null) {
             return true;
         } else {
             return false;

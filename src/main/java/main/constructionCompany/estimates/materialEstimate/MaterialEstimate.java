@@ -8,23 +8,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
-public class MaterialEstimate extends Material implements ICost, ISimilar {
+public class MaterialEstimate implements ICost, ISimilar {
     private int code;
     private double quantity;
     private Material material;
     private static final Logger logger = LogManager.getLogger(MaterialEstimate.class);
 
     public MaterialEstimate() {
-    }
-
-    public MaterialEstimate(String name, String type, double cost, int code, double quantity) {
-        super(name, type, cost);
-        if (code < 0) {
-            logger.error("Unique number exception: it less then 0");
-        } else {
-            this.code = code;
-        }
-        this.quantity = quantity;
     }
 
     public MaterialEstimate(Material material, int code, double quantity) {
@@ -67,11 +57,9 @@ public class MaterialEstimate extends Material implements ICost, ISimilar {
 
     @Override
     public String toString() {
-        return "Material Estimate [\nname => " + super.getName()
-                + "\ntype => " + super.getType()
-                + "\ncost => " + super.getCost()
-                + "\ncode => " + code
-                + "\nquantity => " + quantity + " ]";
+        return "\nMaterial Estimate [ Material => " + getMaterial()
+                + " code => " + code
+                + " nquantity => " + quantity + " ]";
     }
 
     @Override
@@ -84,9 +72,7 @@ public class MaterialEstimate extends Material implements ICost, ISimilar {
         }
 
         MaterialEstimate m = (MaterialEstimate) obj;
-        return Objects.equals(getName(), m.getName())
-                && Objects.equals(getType(), m.getName())
-                && getCost() == m.getCost()
+        return Objects.equals(material, m.material)
                 && code == m.code
                 && quantity == m.quantity;
     }
@@ -103,16 +89,16 @@ public class MaterialEstimate extends Material implements ICost, ISimilar {
     }
     @Override
     public double getPrice() {
-        return getCost() * quantity;
+        return material.getCost() * quantity;
     }
 
     @Override
     public boolean isSimilarType(Material material) {
-        return Objects.equals(this.getType(), material.getType());
+        return Objects.equals(this.getMaterial().getType(), material.getType());
     }
 
     @Override
     public boolean isSimilarMaterial(Material material) {
-        return Objects.equals(this.getType(), material.getType()) && Objects.equals(this.getName(), material.getName());
+        return Objects.equals(this.material.getType(), material.getType()) && Objects.equals(this.material.getName(), material.getName());
     }
 }

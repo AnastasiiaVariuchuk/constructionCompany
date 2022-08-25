@@ -44,14 +44,14 @@ public class HouseProject extends TypeProject implements IOrder {
     }
 
     public String toString() {
-        return "\nHouse Project [\nnumber => " + super.getNumber()
-                + "square => " + super.getSquare()
-                + "recommended section length => " + super.getRecommendedSectionLength()
-                + "recommended section width => " + super.getRecommendedSectionWidth()
-                + "description => " + super.getDescription()
-                + "cost => " + super.getSquare()
-                + "family size => " + familySize
-                + "garage type => " + garageType
+        return "\nHouse Project [ number => " + super.getNumber()
+                + " square => " + super.getSquare()
+                + " recommended section length => " + super.getRecommendedSectionLength()
+                + " recommended section width => " + super.getRecommendedSectionWidth()
+                + " description => " + super.getDescription()
+                + " cost => " + super.getSquare()
+                + " family size => " + familySize
+                + " garage type => " + garageType
                 + " ]";
     }
 

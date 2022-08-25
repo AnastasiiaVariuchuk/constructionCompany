@@ -3,7 +3,9 @@ package main.constructionCompany.divisions.brigade.catalog;
 import main.constructionCompany.divisions.brigade.Brigade;
 import main.constructionCompany.myExceptions.NoSuchElementException;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BrigadeCatalog implements IBrigadeCatatlog {
@@ -45,5 +47,14 @@ public class BrigadeCatalog implements IBrigadeCatatlog {
             throw new NoSuchElementException("There was no such brigade");
         }
         return brigadeSet;
+    }
+
+    @Override
+    public List<Brigade> toList() {
+        List<Brigade> list = new ArrayList<>();
+        for (Brigade element : brigadeSet) {
+            list.add(element);
+        }
+        return list;
     }
 }

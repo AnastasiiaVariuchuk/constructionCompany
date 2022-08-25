@@ -137,13 +137,10 @@ public class Project {
     @Override
     public String toString() {
         return "Project [\nnumber => " + number
-                + "\ntotal cost => " + totalCost
                 + "\ncustomer => " + customer.toString()
                 + "\nlist of estimates => " + estimates.toString()
-                + "\nlist of building plans => " + buildingPlans.toString()
                 + "\nsite => " + site.toString()
-                + "\nproject type => " + typeProject.toString()
-                + "\ndate of signing the contract => " + date + " ]";
+                + "\nproject type => " + typeProject.toString() +" ]";
     }
 
     @Override

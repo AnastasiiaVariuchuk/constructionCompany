@@ -42,9 +42,9 @@ public class Technique {
 
     @Override
     public String toString() {
-        return "Technique [\nname of model => " + nameModel
-                + "\ntype => " + type
-                + "\nrental price => " + rentalPrice + " ]";
+        return "\nTechnique [ name of model => " + nameModel
+                + " type => " + type
+                + " rental price => " + rentalPrice + " ]";
     }
 
     @Override

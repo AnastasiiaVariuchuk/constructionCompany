@@ -57,8 +57,8 @@ public class Brigade {
 
     @Override
     public String toString() {
-        return "Brigade [\nbrigade name => " + name
-                + "\nbrigade prise per hour => " + workPrice + " ]";
+        return "\nBrigade [ brigade name => " + name
+                + " brigade prise per hour => " + workPrice + " ]";
     }
 
     @Override

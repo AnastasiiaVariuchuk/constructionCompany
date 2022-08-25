@@ -45,9 +45,9 @@ public class Material implements ISimilar {
 
     @Override
     public String toString() {
-        return "Material [\nname => " + name
-                + "\ntype => " + type
-                + "\ncost => " + cost + " ]";
+        return "\nMaterial [name => " + name
+                + " type => " + type
+                + " cost => " + cost + " ]";
     }
 
     @Override

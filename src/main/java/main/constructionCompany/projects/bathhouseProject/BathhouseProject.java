@@ -28,7 +28,7 @@ public class BathhouseProject extends TypeProject implements IOrder {
 
     @Override
     public String toString() {
-        return "\nBathhouse Project [\nnumber => " + super.getNumber()
+        return "\nBathhouse Project [ number => " + super.getNumber()
                 + " square => " + super.getSquare()
                 + " recommended section length => " + super.getRecommendedSectionLength()
                 + " recommended section width => " + super.getRecommendedSectionWidth()

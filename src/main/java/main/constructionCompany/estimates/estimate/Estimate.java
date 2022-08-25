@@ -59,9 +59,9 @@ public class Estimate implements ICost {
 
     @Override
     public String toString() {
-        return "Estimate [\nname => " + code
-                + "\nmaterial estimate list => " + materialEstimates.toString()
-                + "\nbrigade estimate list => " + brigadeEstimates.toString() + " ]";
+        return "\nEstimate [ name => " + code
+                + " material estimate list => " + materialEstimates.toString()
+                + " brigade estimate list => " + brigadeEstimates.toString() + " ]";
     }
 
     @Override

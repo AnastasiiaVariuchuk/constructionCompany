@@ -2,6 +2,7 @@ package main.constructionCompany.estimates.estimate.catalog;
 
 import main.constructionCompany.estimates.estimate.Estimate;
 
+import java.util.List;
 import java.util.Set;
 
 public interface IEstimatesCatalog {
@@ -10,4 +11,6 @@ public interface IEstimatesCatalog {
     Estimate findEstimateByCode(int code);
 
     Set<Estimate> deleteEstimate(Estimate estimate);
+
+    List<Estimate> toList();
 }

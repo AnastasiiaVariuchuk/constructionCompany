@@ -67,4 +67,11 @@ public class ArchitectCatalog implements IArchitectCatalog {
         }
         return architectSet;
     }
+
+    public Architect findArchitectByNameSurname(String name, String surname) {
+        Architect employee = architectSet.stream()
+                .filter(employee1 -> employee1.getName().equals(name) && employee1.getSurname().equals(surname))
+                .findAny().orElse(null);;
+        return employee;
+    }
 }

@@ -81,4 +81,10 @@ public class EmployeeCatalog implements IEmployeeCatalog{
         }
         return employeeSet;
     }
+
+    public Employee findEmployeeByNameSurname(String name, String surname) {
+        Employee employee = employeeSet.stream().filter(employee1 -> employee1.getName().equals(name)
+                && employee1.getSurname().equals(surname)).findAny().orElse(null);
+        return employee;
+    }
 }
